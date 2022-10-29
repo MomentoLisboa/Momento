@@ -17,6 +17,8 @@ const CreateNFTView = ({ appState }) => {
     const [imageData, setImageData] = useState();
     const { account, isReady } = useAccount();
 
+    const [fontSize, setFontSize] = useState(20)
+
     const createNFT = async (e) => {
         e.preventDefault();
 
@@ -111,6 +113,7 @@ const CreateNFTView = ({ appState }) => {
         <h1 className="text-white">CREATE</h1>
         <form onSubmit={createNFT}>
             <input
+                style={{width:'100%', fontSize}}
                 id={"title"}
                 type={"text"}
                 className={""}
@@ -119,6 +122,7 @@ const CreateNFTView = ({ appState }) => {
                 onChange={(e) => setTitle(e.target.value)}
             />
             <input
+                style={{width:'100%', fontSize}}
                 id={"description"}
                 type={"text"}
                 className={""}
@@ -127,11 +131,11 @@ const CreateNFTView = ({ appState }) => {
                 onChange={(e) => setDescription(e.target.value)}
             />
             {!pictureTaken && <video id="video" autoplay="" width="370" height="277"/>}
-            <button onClick={loadPhoto}>Load Camera</button>
+            <button onClick={loadPhoto} style={{width:'50%', fontSize}}>Load Camera</button>
             <canvas id="canvas"/>
-            <button onClick={takePhoto}>Take Picture</button>
+            <button onClick={takePhoto} style={{width:'50%', fontSize}}>Take Picture</button>
             <Web3Button/>
-            <button type="submit">Mint</button>
+            <button type="submit" style={{width:'50%', fontSize}}>Mint</button>
         </form>
     </>)
 }
