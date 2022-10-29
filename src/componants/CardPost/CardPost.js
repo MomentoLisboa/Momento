@@ -1,4 +1,4 @@
-import Ratting from "../Ratting"
+import Ratting from "../Ratting/Ratting"
 import './CardPost.css'
 
 const cardPost = ({rate}) => {
