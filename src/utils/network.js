@@ -36,8 +36,8 @@ export const cronosTestnet = {
 
 export const mumbaiTestnet = {
   id: 80001,
-  name: "Mumbai Testnet",
-  network: "matic",
+  name: "Polygon (Mumbai Testnet)",
+  network: "mumbai",
   nativeCurrency: {
     decimals: 18,
     name: "MATIC",

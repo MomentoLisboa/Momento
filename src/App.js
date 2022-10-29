@@ -31,7 +31,7 @@ const config = {
 
 function App() {
   const [appState, setAppState] = useState({
-    view: "start",
+    view: "create",
   });
 
   const isWalletConnected = !!appState?.wallet_id;
@@ -44,6 +44,8 @@ function App() {
         return <MapView />;
       case "create":
         return <CreateNFTView appState={appState} />;
+      case "list":
+        return <PostListView />
       default:
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
     }
@@ -53,10 +55,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <PostListView /> */}
-        <OurMap/>
+        {/* <OurMap/> */}
       </header>
-      {/* {componentToRender()} */}
-      <Web3Modal config={config} />
+      {componentToRender()}
     </div>
   );
 }
