@@ -6,13 +6,26 @@ import MapView from "./Pages/Map-view";
 import WalletConnectScreen from "./Pages/Wallet-connect";
 import CreateNFTView from "./Pages/Create-NFT-view";
 import { Web3Modal } from '@web3modal/react';
+import { providers } from '@web3modal/ethereum';
+import { gnosisTestnet, cronosTestnet, mumbaiTestnet } from "./utils/network";
 
 const config = {
-  projectId: '<ENV>',
+  projectId: '1bd4139fcba9da0ebb55e2d5ffa1d12d',
   theme: 'dark',
   accentColor: 'default',
   ethereum: {
-    appName: 'web3Modal'
+    appName: 'Momento',
+    autoConnect: true,
+    chains: [
+      gnosisTestnet,
+      cronosTestnet,
+      mumbaiTestnet,
+    ],
+    providers: [
+      providers.walletConnectProvider({
+        projectId: "1bd4139fcba9da0ebb55e2d5ffa1d12d",
+      }),
+    ],
   }
 };
 
@@ -30,7 +43,7 @@ function App() {
       case "map":
         return <MapView />;
       case "create":
-        return <CreateNFTView />;
+        return <CreateNFTView appState={appState} />;
       default:
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
     }
