@@ -46,31 +46,35 @@ const PostListView = () => {
                 const tokenURI= await getTokenURI(index);
                 tokenURIs.push(tokenURI)
             }
-            console.log(tokenURIs)
+            // console.log(tokenURIs)
             return tokenURIs
         }
-        getAllTokenURILinks().then( URILinks => {
+        let getURI = async() => {
+            const URILinks = await getAllTokenURILinks()
             const URIs = []
             for (let index = 0; index < URILinks.length; index++) {
                 const URILink =  URILinks[index]?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/');
-                fetch(URILink)
-                .then((response) => response.json())
-                .then((URI) => URIs.push(URI));
+                const response = await fetch(URILink)
+                setMomentoNFTs([...URIs, await response.json()])
             }
-            setMomentoNFTs(URIs)
-        });
+            console.log(URIs)
+            return URIs
+            
+        }
+        getURI()
     }, [totalSupply]);
 
-    useEffect(()=>{
-        console.log(NFTBalance);
-    }, [NFTBalance])
+    // useEffect(()=>{
+    //     console.log(NFTBalance);
+    // }, [NFTBalance])
 
     useEffect(()=>{
-        console.log(MomentoNFTs);
+        // console.log(MomentoNFTs[0]);
     }, [MomentoNFTs])
 
     return (<>
-        <CardPost rate={4}/>
+        {/* <CardPost MomentoNFT={MomentoNFTs.length > 0 ? MomentoNFTs[0] : []}/> */}
+        {MomentoNFTs.map(MomentoNFT => <CardPost key={MomentoNFT.image} MomentoNFT={MomentoNFT}/>)}
     </>)
 }
 
