@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from "ethers";
 import { NFTStorage, File } from 'nft.storage';
-import { useProvider, useSigner, useAccount, Web3Button } from '@web3modal/react'
+import { useSigner, useAccount, Web3Button } from '@web3modal/react'
 
 import { loadCameraStream } from "../utils/camera";
 import { getCurrentLocation } from "../utils/location";
@@ -15,19 +15,28 @@ const CreateNFTView = ({ appState }) => {
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
     const [imageData, setImageData] = useState();
-    const { provider } = useProvider();
     const { account, isReady } = useAccount();
-    const { data, error, isLoading } = useSigner();
 
     const createNFT = async (e) => {
         e.preventDefault();
 
+        if(window.ethereum) {
+            await window.ethereum.enable();
+            console.log("we have ethereum");
+        }
+        const [owner] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+        const signer = await provider.getSigner(owner);
+
         const momento = new ethers.Contract(
-            "0xC4Dca8b1804E69eE1Ef138f6DC90d6ACB019ec48",
+            "0x92e16023C1201aEf432cEb15677791AE03966De6",
             MomentoABI.abi,
-            provider
+            signer
         );
 
+        console.log("UPLOADING DATA");
         const storage = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDZGOTMwMEMxNWRmMTIxMEMyRTA4YTVEZWY5OTkwRDM4ZTE1MTNmN0IiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2NzA1NDM4Nzg1NCwibmFtZSI6Im1vbWVudG8ifQ.HIWCpDx1iBfNWkcB-oRH80rMj7ZkQVDKf6F6oLCotok" })
         const metadata = await storage.store({
             name: title,
@@ -47,11 +56,10 @@ const CreateNFTView = ({ appState }) => {
             }
         });
 
-        console.log("METADATA WAS GOOD");
+        console.log("MINTING");
 
-        const result = await momento.connect(data).mint(data.address, metadata.url);
+        const result = await momento.connect(signer).mint(owner, metadata.url);
 
-        console.log("MUCH SUCCESS");
         console.log(result);
     }
 
