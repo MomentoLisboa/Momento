@@ -1,10 +1,10 @@
 import MomentoHubABI from '../ABI/MomentoHubABI';
-import { useWeb3 } from './useWeb3';
+import { useWeb3 } from './useWeb3.js';
 
 
 const useMomentoHub = () => {
     const web3 = useWeb3();
-    const MomentoHubContractAddress = web3.utils.toChecksumAddress('0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d');
+    const MomentoHubContractAddress = web3.utils.toChecksumAddress('0x92e16023C1201aEf432cEb15677791AE03966De6');
     const MomentoHub = new web3.eth.Contract(MomentoHubABI, MomentoHubContractAddress);
     return MomentoHub;
 };
