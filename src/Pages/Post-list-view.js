@@ -9,6 +9,7 @@ const PostListView = () => {
     const [walletAddress, setWalletAddress] = useState('0x13d36a0a444e76d83e01b7fd2affeeac7d0bb827');
     const [NFTBalance, setNFTBalance] = useState(0);
     const [totalSupply, setTotalSupply] = useState();
+    const [MomentoNFTs, setMomentoNFTs] = useState([]);
 
     const MomentoHub = useMomentoHub();
 
@@ -38,7 +39,7 @@ const PostListView = () => {
             const tokenURI = await MomentoHub.methods.tokenURI(tokenId).call();
             return tokenURI
         }
-        let getAllTokenURI = async() => {
+        let getAllTokenURILinks = async() => {
             
             const tokenURIs = []
             for (let index = 1; index <= totalSupply; index++) {
@@ -48,12 +49,25 @@ const PostListView = () => {
             console.log(tokenURIs)
             return tokenURIs
         }
-        getAllTokenURI();
+        getAllTokenURILinks().then( URILinks => {
+            const URIs = []
+            for (let index = 0; index < URILinks.length; index++) {
+                const URILink =  URILinks[index]?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/');
+                fetch(URILink)
+                .then((response) => response.json())
+                .then((URI) => URIs.push(URI));
+            }
+            setMomentoNFTs(URIs)
+        });
     }, [totalSupply]);
 
     useEffect(()=>{
         console.log(NFTBalance);
     }, [NFTBalance])
+
+    useEffect(()=>{
+        console.log(MomentoNFTs);
+    }, [MomentoNFTs])
 
     return (<>
         <CardPost rate={4}/>
