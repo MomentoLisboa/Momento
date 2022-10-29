@@ -1,0 +1,12 @@
+.text-white {
+  color: white;
+}
+
+.map {
+  width: 100%;
+}
+
+.homeMap {
+  width: 100%;
+  height: 20rem;
+}
