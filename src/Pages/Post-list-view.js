@@ -8,6 +8,7 @@ const PostListView = () => {
 
     const [walletAddress, setWalletAddress] = useState('0x13d36a0a444e76d83e01b7fd2affeeac7d0bb827');
     const [NFTBalance, setNFTBalance] = useState(0);
+    const [totalSupply, setTotalSupply] = useState();
 
     const MomentoHub = useMomentoHub();
 
@@ -23,6 +24,32 @@ const PostListView = () => {
         }
         getNumberOfMomentoNFTWalletOwnerHave();
     }, [walletAddress]);
+
+    useEffect(()=>{
+        const getTotalSupply = async () => {
+            const totalSupply_ = await MomentoHub.methods.totalSupply().call();
+            return totalSupply_
+        }
+        getTotalSupply().then(result => setTotalSupply(result));
+    }, [])
+
+    useEffect(()=>{
+        let getTokenURI = async(tokenId) => {
+            const tokenURI = await MomentoHub.methods.tokenURI(tokenId).call();
+            return tokenURI
+        }
+        let getAllTokenURI = async() => {
+            
+            const tokenURIs = []
+            for (let index = 1; index <= totalSupply; index++) {
+                const tokenURI= await getTokenURI(index);
+                tokenURIs.push(tokenURI)
+            }
+            console.log(tokenURIs)
+            return tokenURIs
+        }
+        getAllTokenURI();
+    }, [totalSupply]);
 
     useEffect(()=>{
         console.log(NFTBalance);
