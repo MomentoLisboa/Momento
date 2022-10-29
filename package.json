@@ -9,8 +9,10 @@
     "@web3modal/ethereum": "^2.0.0-beta.1",
     "@web3modal/react": "^2.0.0-beta.1",
     "ethers": "^5.7.2",
+    "mapbox-gl": "^2.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-map-gl": "^7.0.19",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "web3": "^1.8.0"
