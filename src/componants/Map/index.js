@@ -27,7 +27,7 @@ const Map = ({ coordinates = []}) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {coordinates.map((coord) => (
-                <Marker position={[coord.latitude, coord.longitude]} icon={icon}>
+                <Marker position={[coord.latitude, coord.longitude]} icon={icon} key={`coord-${coord.key}`}>
                     <Popup>
                         {coord.desc} <br /> Easily customizable.
                     </Popup>

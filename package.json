@@ -9,13 +9,13 @@
     "@web3modal/ethereum": "^2.0.0-beta.1",
     "@web3modal/react": "^2.0.0-beta.1",
     "ethers": "^5.7.2",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
     "leaflet": "^1.7.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-leaflet": "^3.2.5",
-    "mapbox-gl": "^2.10.0"
+    "mapbox-gl": "^2.10.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
