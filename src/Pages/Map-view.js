@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Map from '../componants/Map';
+import MenuOptions from '../componants/MenuOptions';
 import getAllMomentoNFTs from '../hooks/useMomentoNFTs';
 
-const MapView = () => {
+const MapView = ({ goToCreate, goToList }) => {
 
     const [MomentoNFTs, setMomentoNFTs] = useState([])
 
@@ -22,10 +23,14 @@ const MapView = () => {
         getMementoNFTs()
     })
 
-    return (<>
-        <h1 className="text-white">MAP VIEW</h1>
-        <Map coordinates={coordinates} />
-    </>)
+    return (
+        <div className="main-content">
+            <h3 className="text-primary main-title">Momento</h3>
+            <MenuOptions goToCreate={goToCreate} goToList={goToList}/>
+            <Map coordinates={coordinates} />
+            <p></p>
+        </div>
+    )
 }
 
 export default MapView

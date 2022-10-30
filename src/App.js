@@ -16,14 +16,27 @@ function App() {
 
   const isWalletConnected = !!appState?.wallet_id;
 
+  const goToMap = (e) => {
+    e.preventDefault();
+    setAppState((prev) => ({...prev, view: "map" }));
+  }
+  const goToCreate = (e) => {
+    e.preventDefault();
+    setAppState((prev) => ({...prev, view: "create" }));
+  }
+  const goToList = (e) => {
+    e.preventDefault();
+    setAppState((prev) => ({...prev, view: "list" }));
+  }
+
   const componentToRender = () => {
     switch(appState.view) {
       case "home":
-        return <Home goToNext={() => setAppState((prev) => ({...prev, view: "map" }))}/>;
+        return <Home goToNext={goToMap}/>;
       case "start":
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
       case "map":
-        return <MapView />;
+        return <MapView goToCreate={goToCreate} goToList={goToList}/>;
       case "create":
         return <CreateNFTView appState={appState} />;
       case "list":
