@@ -44,6 +44,8 @@ const Map = ({MomentoNFTs, initialZoom}) => {
         }
     }, [info])
 
+    console.log(MomentoNFTs)
+
 
     return (
         <>
@@ -72,7 +74,10 @@ const Map = ({MomentoNFTs, initialZoom}) => {
                         <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} eventHandlers={{ click: () => setInfo(URI) }}>
                             <Popup>
                                 <img src={URI?.image?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/')} style={{width: '50%'}} />
-                                <b>{URI?.name}</b> <br /> {URI?.description}
+                                <b>{URI?.name}</b> <br /> {URI?.description} <br />
+                                <br />
+                                <b>Tags: </b>
+                                {URI.properties.tags.map((tag, index) => <span key={index}>{tag} </span>)}
                             </Popup>
                         </Circle>
                     </>
