@@ -35,7 +35,7 @@ const config = {
 
 function App() {
   const [appState, setAppState] = useState({
-    view: "create",
+    view: "home",
   });
 
   const goToMap = (e) => {
@@ -72,11 +72,6 @@ function App() {
     <>
       <Web3Modal config={config}/>
       <div className="App">
-        <header className="App-header">
-          
-          {/* <PostListView /> */}
-          {/* <OurMap/> */}
-        </header>
         {componentToRender()}
       </div>
     </>
