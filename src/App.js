@@ -5,33 +5,12 @@ import OurMap from "./Pages/test-map";
 import MapView from "./Pages/Map-view";
 import WalletConnectScreen from "./Pages/Wallet-connect";
 import CreateNFTView from "./Pages/Create-NFT-view";
-import { Web3Modal } from '@web3modal/react';
-import { providers } from '@web3modal/ethereum';
-import { gnosisTestnet, cronosTestnet, mumbaiTestnet } from "./utils/network";
 
-const config = {
-  projectId: '1bd4139fcba9da0ebb55e2d5ffa1d12d',
-  theme: 'dark',
-  accentColor: 'default',
-  ethereum: {
-    appName: 'Momento',
-    autoConnect: true,
-    chains: [
-      gnosisTestnet,
-      cronosTestnet,
-      mumbaiTestnet,
-    ],
-    providers: [
-      providers.walletConnectProvider({
-        projectId: "1bd4139fcba9da0ebb55e2d5ffa1d12d",
-      }),
-    ],
-  }
-};
+
 
 function App() {
   const [appState, setAppState] = useState({
-    view: "map",
+    view: "start",
   });
 
   const isWalletConnected = !!appState?.wallet_id;
