@@ -19,6 +19,8 @@ const CardPost = ({MomentoNFT}) => {
         <img className="imgCardPost" src={MomentoNFT.image?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/')} onError={()=>setIsVisible(false)}/>
         <h3>{MomentoNFT.name}</h3>
         <p>{MomentoNFT.description}</p>
+        <p><b>{MomentoNFT?.properties?.tags == [] ? 'Tags:' : ''}</b></p>
+        <p>{MomentoNFT?.properties?.tags?.map((tag, index) => <span key={index}>{tag} </span>)}</p>
         <Ratting rate={rate}/>
     </div>)
 }
