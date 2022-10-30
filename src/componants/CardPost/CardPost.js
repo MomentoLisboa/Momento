@@ -4,14 +4,6 @@ import './CardPost.css'
 
 const CardPost = ({MomentoNFT}) => {
 
-    const [rate, _] = useState(randomIntFromInterval(3, 5))
-
-    function randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-
-    
-
     const [isVisible, setIsVisible] = useState(true);
 
     if(!isVisible) return (<></>)
@@ -21,7 +13,7 @@ const CardPost = ({MomentoNFT}) => {
         <p>{MomentoNFT.description}</p>
         <p><b>{MomentoNFT?.properties?.tags == [] ? 'Tags:' : ''}</b></p>
         <p>{MomentoNFT?.properties?.tags?.map((tag, index) => <span key={index}>{tag} </span>)}</p>
-        <Ratting rate={rate}/>
+        <Ratting rate={MomentoNFT?.properties?.rating}/>
     </div>)
 }
 
