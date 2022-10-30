@@ -18,7 +18,7 @@ const config = {
   theme: 'dark',
   accentColor: 'default',
   ethereum: {
-    appName: 'Momento',
+    appName: 'MOMENTO',
     autoConnect: true,
     chains: [
       gnosisTestnet,

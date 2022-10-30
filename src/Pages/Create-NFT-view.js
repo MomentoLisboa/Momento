@@ -119,7 +119,7 @@ const CreateNFTView = ({ appState, goToMap, goToList }) => {
 
     return (
         <div className="main-content">
-            <h3 className="text-primary main-title">Momento</h3>
+            <h3 className="text-white main-title">MOMENTO</h3>
             <MenuOptions goToLeft={goToList} leftText="List view" goToRight={goToMap} rightText="Map view" />
             <div className="flex-row">
                 <p className="text-white">{shortenString(account.address)}</p> <Web3Button/>

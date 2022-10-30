@@ -33,7 +33,7 @@ const MapView = ({ goToCreate, goToList }) => {
 
     return (
         <div className="main-content">
-            <h3 className="text-primary main-title">Momento</h3>
+            <h3 className="text-white main-title">MOMENTO</h3>
             <MenuOptions rightText="Create Review" goToRight={goToCreate} leftText="List View" goToLeft={goToList}/>
             <Map MomentoNFTs={MomentoNFTs} />
             <button style={{backgroundColor: '#FBE30A', width: '40px', borderRadius: '40px', fontSize: 30 ,padding: 0, margin: '20px auto'}} onClick={goToCreate}>+
