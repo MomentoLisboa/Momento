@@ -5,18 +5,21 @@ import OurMap from "./Pages/test-map";
 import MapView from "./Pages/Map-view";
 import WalletConnectScreen from "./Pages/Wallet-connect";
 import CreateNFTView from "./Pages/Create-NFT-view";
+import Home from "./Pages/Home";
 
 
 
 function App() {
   const [appState, setAppState] = useState({
-    view: "start",
+    view: "home",
   });
 
   const isWalletConnected = !!appState?.wallet_id;
 
   const componentToRender = () => {
     switch(appState.view) {
+      case "home":
+        return <Home goToNext={() => setAppState((prev) => ({...prev, view: "map" }))}/>;
       case "start":
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
       case "map":
@@ -32,10 +35,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <PostListView /> */}
-        {/* <OurMap/> */}
-      </header>
       {componentToRender()}
     </div>
   );
