@@ -2,10 +2,12 @@ body{
     background-color: black;
 }
 .cardPost{
-    background-color: white;
-    width: 80%;
-    margin: 0 auto
+    background-color: rgb(164, 164, 164);
+    border-color: 1px solid white;
+    margin-bottom: 24px;
+    border-radius: 24px;
 }
+
 .imgCardPost{
     float: left;
     width: 40%;

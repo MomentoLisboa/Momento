@@ -72,3 +72,8 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
