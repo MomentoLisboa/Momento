@@ -2,7 +2,7 @@ import L from 'leaflet';
 import {
     MapContainer,
     TileLayer,
-    Marker,
+    Circle,
     Popup
 } from 'react-leaflet';
 
@@ -21,20 +21,16 @@ const Map = ({ coordinates = []}) => {
     const starterPosition = coordinates.length > 0 ? [coordinates[0].latitude, coordinates[0].longitude] : [38.71307519909844, -9.149991653229893];
 
     return (
-        <MapContainer className="map homeMap" center={starterPosition} zoom={15} scrollWheelZoom={false}>
+        <MapContainer className="map homeMap" center={starterPosition} zoom={12} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {coordinates.map((coord) => (
-                <Marker position={[coord.latitude, coord.longitude]} icon={icon} key={`coord-${coord.key}`}>
-                    <Popup>
-                        <>
-                            <h3>{coord.name}</h3>
-                            <p>{coord.description}</p>
-                        </>
-                    </Popup>
-                </Marker>
+                <>
+                    <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} />
+                    <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} />
+                </>
             ))}
         </MapContainer>
     )

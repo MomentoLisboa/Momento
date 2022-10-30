@@ -10,3 +10,35 @@
   width: 100%;
   height: 20rem;
 }
+
+.leaflet-tile-pane {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.circle-magic-kingdom {
+  fill: blue;
+  /* stroke: red; */
+  stroke-width: 0px;
+  animation: MagicKingdom infinite 3s;
+  /* transition: stroke-width .5s; */
+}
+
+/* .circle-magic-kingdom:hover {
+  stroke-width: 15px;
+} */
+
+@keyframes MagicKingdom {
+  0% {
+    /* stroke: blue; */
+    opacity: 0.4;
+  }
+  50% {
+    /* stroke: blue; */
+    opacity: 1;
+  }
+  100% {
+    /* stroke: blue; */
+    opacity: 0.4;
+  }
+}
