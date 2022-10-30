@@ -1,7 +1,7 @@
-import useMomentoHub from "../hooks/useMomentoHub";
+import useMomentoHub from "./useMomentoHub";
 import Web3 from 'web3';
 import MomentoHubABI from '../ABI/MomentoHubABI';
-import { useWeb3 } from "../hooks/useWeb3";
+import { useWeb3 } from "./useWeb3";
 import { useEffect, useState } from 'react'
 
 const getAllMomentoNFTs = async () => {

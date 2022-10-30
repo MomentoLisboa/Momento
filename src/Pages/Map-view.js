@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Map from '../componants/Map';
 import MenuOptions from '../componants/MenuOptions';
-import getAllMomentoNFTs from '../hooks/useMomentoNFTs';
+import getAllMomentoNFTs from '../hooks/getAllMomentoNFTs';
 
 const MapView = ({ goToCreate, goToList }) => {
 
