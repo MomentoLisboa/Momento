@@ -25,7 +25,7 @@ const CheckWhitelist = () => {
     return(
         <>
             {!!isReady && <p className="text-white">{account.address}</p>}
-            {!granted ? <p className="text-white">Connect to another wallet</p> : <><img src="https://lens.xyz/static/media/lensfrens.2f28dc59c1c3058c6d170c5c6a5fecca.svg" /><br /><p className="text-white" style={{fontSize: '20px', fontWeight: '700'}}>Granted</p></>}}
+            {!granted ? <p className="text-white">Connect to another wallet</p> : <><img src="https://lens.xyz/static/media/lensfrens.2f28dc59c1c3058c6d170c5c6a5fecca.svg" /><br /><p className="text-white" style={{fontSize: '20px', fontWeight: '700'}}>Granted</p></>}
         </>
     )
 }
