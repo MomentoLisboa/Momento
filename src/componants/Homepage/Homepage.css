@@ -18,7 +18,30 @@
   margin-top: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
+  padding-right: 32px;
+  padding-left: 32px;
   border-radius: 52px;
   cursor: pointer;
   font-size: 16px;
+  text-decoration: none;
+  transition-duration: 0.25s;
+  outline: none;
+  background-color: #FBE30A;
+  border: 1px solid #FBE30A;
+}
+
+.secondary-button {
+  margin-top: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 32px;
+  padding-left: 32px;
+  border-radius: 52px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition-duration: 0.25s;
+  outline: none;
+  background-color: white;
+  border: 1px solid white;
 }
