@@ -25,7 +25,7 @@ const PostListView = () => {
 
     return (<>
         {/* <CardPost MomentoNFT={MomentoNFTs.length > 0 ? MomentoNFTs[0] : []}/> */}
-        {MomentoNFTs.map(MomentoNFT => <CardPost key={MomentoNFT.image} MomentoNFT={MomentoNFT}/>)}
+        {MomentoNFTs.map((MomentoNFT, index) => <CardPost key={MomentoNFT.image + index} MomentoNFT={MomentoNFT}/>)}
     </>)
 }
 
