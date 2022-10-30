@@ -6,8 +6,8 @@ const cardPost = ({MomentoNFT}) => {
     console.log(MomentoNFT)
     return (<div className="cardPost">
         <img className="imgCardPost" src={MomentoNFT.image?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/')}/>
-        <h3></h3>
-        <p></p>
+        <h3>{MomentoNFT.name}</h3>
+        <p>{MomentoNFT.description}</p>
         <Ratting rate={rate}/>
     </div>)
 }
