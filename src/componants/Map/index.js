@@ -18,16 +18,6 @@ const Map = ({ MomentoNFTs }) => {
     const countdownTime = 5000;
     const [countdown, setCountdown] = useState(()=>{});
 
-    // const coordinates = MomentoNFTs.map((URI, index) => { 
-    //     return {
-    //         latitude: URI?.properties.coords.latitude,
-    //         longitude: URI?.properties.coords.longitude,
-    //         name: URI?.name,
-    //         description: URI?.description,
-    //         key: index
-    //     }
-    // });
-
     // const icon = L.icon({
     //     iconUrl: "/images/marker-icon.png",
     //     iconRetinaUrl: "/images/marker-icon.png",
