@@ -1,0 +1,15 @@
+body{
+    background-color: black;
+}
+.cardPost{
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+    clear: both
+}
+.imgCardPost{
+    float: left;
+    width: 40%;
+    height: 200px;
+    background-color: red;
+}
