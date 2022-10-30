@@ -64,8 +64,8 @@ function App() {
         return <CreateNFTView appState={appState} goToMap={goToMap} goToList={goToList}/>;
       case "list":
         return <PostListView goToCreate={goToCreate} goToMap={goToMap}/>
-      case "checkWhitelist":
-        return <CheckWhitelist goToCreate={goToCreate} goToMap={goToMap}/>
+      // case "checkWhitelist":
+      //   return <CheckWhitelist goToCreate={goToList} goToMap={goToMap} changeConnectedWallet={setAppState}/>
       default:
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
     }

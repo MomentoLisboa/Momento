@@ -11,7 +11,7 @@ const getAllMomentoNFTs = async () => {
 
     const walletAddress = '0x13d36a0a444e76d83e01b7fd2affeeac7d0bb827'
 
-    const MomentoHubContractAddress = web3.utils.toChecksumAddress('0x92e16023C1201aEf432cEb15677791AE03966De6');
+    const MomentoHubContractAddress = web3.utils.toChecksumAddress('0x2C36fD1981465F40B199f8A869B2D2f8F9692F36');
     const MomentoHub = new web3.eth.Contract(MomentoHubABI, MomentoHubContractAddress);
 
     

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ethers } from "ethers";
 import { NFTStorage, File } from 'nft.storage';
 import { useSigner, useAccount, Web3Button } from '@web3modal/react'
+
+import useLensHub from '../hooks/useLensHub';
+import { useWeb3Polygon } from '../hooks/useWeb3';
 
 import MenuOptions from '../componants/MenuOptions';
 
@@ -20,6 +23,30 @@ const CreateNFTView = ({ appState, goToMap, goToList }) => {
     const { account, isReady } = useAccount();
 
     const [fontSize, setFontSize] = useState(20)
+
+    const [granted, setGranted] = useState(false);
+    
+    const web3Polygon = useWeb3Polygon();
+    const LensHub = useLensHub();
+
+    console.log(account.address)
+
+    useEffect(()=>{
+        const getUserData = async () => {
+            if(account.address == ""){
+                setGranted(false)
+                return
+            };
+            const checkSumAddress = web3Polygon.utils.toChecksumAddress(account.address);
+            const profileId = await LensHub.methods.defaultProfile(checkSumAddress).call();
+
+            setGranted(profileId != 0) // if profileId different to zero it means that this wallet get an Lens profile
+        }
+        getUserData()
+    }, [account])
+
+
+    
 
     const createNFT = async (e) => {
         e.preventDefault();
@@ -117,12 +144,19 @@ const CreateNFTView = ({ appState, goToMap, goToList }) => {
         return `${firstPart}..${secondPart}`;
     }
 
+    var GrandView = (<></>)
+
+    if(granted == true){
+        GrandView = (<><img src="https://lens.xyz/static/media/lensfrens.2f28dc59c1c3058c6d170c5c6a5fecca.svg" style={{width: '50px'}}/><br /><p className="text-white" style={{fontSize: '20px', fontWeight: '700'}}>Granted</p></>)
+    }
+
     return (
         <div className="main-content">
             <h3 className="text-white main-title">MOMENTO</h3>
             <MenuOptions goToLeft={goToList} leftText="List view" goToRight={goToMap} rightText="Map view" />
             <div className="flex-row">
-                <p className="text-white">{shortenString(account.address)}</p> <Web3Button/>
+                <p className="text-white">{shortenString(account.address)}</p> <Web3Button/><br />
+                {GrandView}
             </div>
             <form onSubmit={createNFT} className="form-control">
                 <input
