@@ -111,10 +111,19 @@ const CreateNFTView = ({ appState, goToMap, goToList }) => {
         console.log(image_data_url);
     }
 
+    const shortenString = (stringToShorten) => {
+        const firstPart = stringToShorten.substring(0, 6);
+        const secondPart = stringToShorten.substring(stringToShorten.length - 6, stringToShorten.length)
+        return `${firstPart}..${secondPart}`;
+    }
+
     return (
         <div className="main-content">
             <h3 className="text-primary main-title">Momento</h3>
             <MenuOptions goToLeft={goToMap} leftText="List view" goToRight={goToList} rightText="Map view" />
+            <div className="flex-row">
+                <p className="text-white">{shortenString(account.address)}</p> <Web3Button/>
+            </div>
             <form onSubmit={createNFT} className="form-control">
                 <input
                     style={{fontSize}}
@@ -134,12 +143,12 @@ const CreateNFTView = ({ appState, goToMap, goToList }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <button className="secondary-button" onClick={loadPhoto} style={{width:'50%', fontSize}}>Load Camera</button>
-                {!pictureTaken && <video id="video" autoplay="" width="370" height="277"/>}
+                {!timeOfPicture && <button className="secondary-button" onClick={loadPhoto} style={{fontSize}}>Load Camera</button>}
+                {!pictureTaken && <video id="video" autoplay="" width="325" height="244"/>}
+                {(!!timeOfPicture && !pictureTaken) && <button className="secondary-button" onClick={takePhoto} style={{fontSize}}>Take Picture</button>}
                 <canvas id="canvas"/>
-                <button onClick={takePhoto} style={{width:'50%', fontSize}}>Take Picture</button>
-                <Web3Button/>
-                <button type="submit" style={{width:'50%', fontSize}}>Mint</button>
+                {!account.address && <p className="text-primary">You must connect your wallet before minting.</p>}
+                <button className="primary-button mb-standard" type="submit" style={{fontSize}} disabled={!account.address}>Mint</button>
             </form>
         </div>
     )

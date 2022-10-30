@@ -26,8 +26,14 @@
   text-decoration: none;
   transition-duration: 0.25s;
   outline: none;
+  color: black;
   background-color: #FBE30A;
   border: 1px solid #FBE30A;
+}
+
+.primary-button:disabled {
+  cursor: default;
+  background-color: #fdec58;
 }
 
 .secondary-button {
@@ -44,4 +50,5 @@
   outline: none;
   background-color: white;
   border: 1px solid white;
+  margin-bottom: 24px;
 }
