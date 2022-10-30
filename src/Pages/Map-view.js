@@ -26,9 +26,8 @@ const MapView = ({ goToCreate, goToList }) => {
     return (
         <div className="main-content">
             <h3 className="text-primary main-title">Momento</h3>
-            <MenuOptions goToCreate={goToCreate} goToList={goToList}/>
+            <MenuOptions rightText="Create Review" goToRight={goToCreate} leftText="List View" goToLeft={goToList}/>
             <Map coordinates={coordinates} />
-            <p></p>
         </div>
     )
 }

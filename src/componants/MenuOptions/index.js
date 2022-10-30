@@ -1,10 +1,10 @@
 import "./MenuOptions.css";
 
-const MenuOptions = ({ goToCreate, goToList }) => {
+const MenuOptions = ({ goToLeft, leftText, goToRight, rightText }) => {
   return (
     <div className="options-menu">
-      <button className="primary-button" onClick={goToList}>List View</button>
-      <button className="primary-button" onClick={goToCreate}>Create Review</button>
+      <button className="primary-button" onClick={goToLeft}>{leftText}</button>
+      <button className="primary-button" onClick={goToRight}>{rightText}</button>
     </div>
   )
 };

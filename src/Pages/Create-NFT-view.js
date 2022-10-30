@@ -3,11 +3,13 @@ import { ethers } from "ethers";
 import { NFTStorage, File } from 'nft.storage';
 import { useSigner, useAccount, Web3Button } from '@web3modal/react'
 
+import MenuOptions from '../componants/MenuOptions';
+
 import { loadCameraStream } from "../utils/camera";
 import { getCurrentLocation } from "../utils/location";
 import MomentoABI from "../utils/MomentoABI.json";
 
-const CreateNFTView = ({ appState }) => {
+const CreateNFTView = ({ appState, goToMap, goToList }) => {
     const [isLocationEnabled, setIsLocationEnabled] = useState();
     const [currentPosition, setCurrentPosition] = useState({});
     const [timeOfPicture, setTimeOfPicture] = useState();
@@ -109,35 +111,38 @@ const CreateNFTView = ({ appState }) => {
         console.log(image_data_url);
     }
 
-    return (<>
-        <h1 className="text-white">CREATE</h1>
-        <form onSubmit={createNFT}>
-            <input
-                style={{width:'100%', fontSize}}
-                id={"title"}
-                type={"text"}
-                className={""}
-                placeholder={"Event Title"}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
-            <input
-                style={{width:'100%', fontSize}}
-                id={"description"}
-                type={"text"}
-                className={""}
-                placeholder={"Event Description"}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            {!pictureTaken && <video id="video" autoplay="" width="370" height="277"/>}
-            <button onClick={loadPhoto} style={{width:'50%', fontSize}}>Load Camera</button>
-            <canvas id="canvas"/>
-            <button onClick={takePhoto} style={{width:'50%', fontSize}}>Take Picture</button>
-            <Web3Button/>
-            <button type="submit" style={{width:'50%', fontSize}}>Mint</button>
-        </form>
-    </>)
+    return (
+        <div className="main-content">
+            <h3 className="text-primary main-title">Momento</h3>
+            <MenuOptions goToLeft={goToMap} leftText="List view" goToRight={goToList} rightText="Map view" />
+            <form onSubmit={createNFT} className="form-control">
+                <input
+                    style={{fontSize}}
+                    id={"title"}
+                    type={"text"}
+                    className={"input-field"}
+                    placeholder={"Event Title"}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <input
+                    style={{fontSize}}
+                    id={"description"}
+                    type={"text"}
+                    className={"input-field"}
+                    placeholder={"Event Description"}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <button className="secondary-button" onClick={loadPhoto} style={{width:'50%', fontSize}}>Load Camera</button>
+                {!pictureTaken && <video id="video" autoplay="" width="370" height="277"/>}
+                <canvas id="canvas"/>
+                <button onClick={takePhoto} style={{width:'50%', fontSize}}>Take Picture</button>
+                <Web3Button/>
+                <button type="submit" style={{width:'50%', fontSize}}>Mint</button>
+            </form>
+        </div>
+    )
 }
 
 export default CreateNFTView;
