@@ -3,7 +3,14 @@ import Ratting from "../Ratting/Ratting"
 import './CardPost.css'
 
 const CardPost = ({MomentoNFT}) => {
-    const rate = 4
+
+    const [rate, _] = useState(randomIntFromInterval(3, 5))
+
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+
+    
 
     const [isVisible, setIsVisible] = useState(true);
 
