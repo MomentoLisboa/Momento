@@ -5,6 +5,7 @@ import MapView from "./Pages/Map-view";
 import WalletConnectScreen from "./Pages/Wallet-connect";
 import CreateNFTView from "./Pages/Create-NFT-view";
 import Home from "./Pages/Home";
+import CheckWhitelist from "./Pages/CheckWhitelist";
 
 import { Web3Modal } from '@web3modal/react';
 import { providers } from '@web3modal/ethereum';
@@ -63,6 +64,8 @@ function App() {
         return <CreateNFTView appState={appState} goToMap={goToMap} goToList={goToList}/>;
       case "list":
         return <PostListView />
+      case "checkWhitelist":
+        return <CheckWhitelist />
       default:
         return <WalletConnectScreen changeConnectedWallet={setAppState}/>;
     }
