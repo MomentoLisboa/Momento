@@ -64,8 +64,17 @@ const Map = ({MomentoNFTs, initialZoom}) => {
 
                 return(
                     <>
-                        <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} eventHandlers={{ click: () => setInfo(URI) }}/>
-                        <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} eventHandlers={{ click: () => setInfo(URI) }}/>
+                        <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} eventHandlers={{ click: () => setInfo(URI) }}>
+                            <Popup>
+                                A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Circle>
+                        <Circle className="circle-magic-kingdom" center={[coord.latitude, coord.longitude]} radius={200} eventHandlers={{ click: () => setInfo(URI) }}>
+                            <Popup>
+                                <img src={URI?.image?.replace('ipfs://','https://cloudflare-ipfs.com/ipfs/')} style={{width: '50%'}} />
+                                <b>{URI?.name}</b> <br /> {URI?.description}
+                            </Popup>
+                        </Circle>
                     </>
                 )
             })}
@@ -75,7 +84,7 @@ const Map = ({MomentoNFTs, initialZoom}) => {
 
 const MapCustomContainer = ({ MomentoNFTs }) => {
     
-    const initialZoom = 12
+    const initialZoom = 13
 
     const starterPosition = MomentoNFTs.length > 0 ? [MomentoNFTs?.properties?.coords[0].latitude, MomentoNFTs?.properties?.coords[0].longitude] : [38.71307519909844, -9.149991653229893];
 
