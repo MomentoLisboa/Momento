@@ -29,7 +29,10 @@ const Map = ({ coordinates = []}) => {
             {coordinates.map((coord) => (
                 <Marker position={[coord.latitude, coord.longitude]} icon={icon} key={`coord-${coord.key}`}>
                     <Popup>
-                        {coord.desc} <br /> Easily customizable.
+                        <>
+                            <h3>{coord.name}</h3>
+                            <p>{coord.description}</p>
+                        </>
                     </Popup>
                 </Marker>
             ))}
