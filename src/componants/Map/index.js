@@ -5,7 +5,7 @@ import {
     Circle,
     Popup
 } from 'react-leaflet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -15,6 +15,8 @@ import './MapView.css'
 const Map = ({ MomentoNFTs }) => {
 
     const [info, setInfo] = useState(undefined);
+    const countdownTime = 5000;
+    const [countdown, setCountdown] = useState(()=>{});
 
     // const coordinates = MomentoNFTs.map((URI, index) => { 
     //     return {
@@ -39,10 +41,19 @@ const Map = ({ MomentoNFTs }) => {
         console.log(info?.name)
     }
 
+    useEffect(()=>{
+        if(info !== undefined){
+            clearInterval(countdown);
+            setCountdown( setInterval(()=> setInfo(undefined), countdownTime) );
+        }else{
+            clearInterval(countdown);
+        }
+    }, [info])
+
 
     return (
         <>
-            <div>{info?.properties.name}</div>
+            <div style={{color: 'white'}}>{info?.name}</div>
             <MapContainer className="map homeMap" center={starterPosition} zoom={12} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
