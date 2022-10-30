@@ -63,7 +63,7 @@ function App() {
       case "create":
         return <CreateNFTView appState={appState} goToMap={goToMap} goToList={goToList}/>;
       case "list":
-        return <PostListView />
+        return <PostListView goToCreate={goToCreate} goToMap={goToMap}/>
       case "checkWhitelist":
         return <CheckWhitelist />
       default:

@@ -1,10 +1,11 @@
 import CardPost from "../componants/CardPost/CardPost"
 import useMomentoHub from "../hooks/useMomentoHub";
 import { useWeb3 } from "../hooks/useWeb3";
+import MenuOptions from '../componants/MenuOptions';
 import getAllMomentoNFTs from '../hooks/getAllMomentoNFTs';
 import { useEffect, useState } from 'react'
 
-const PostListView = () => {
+const PostListView = ({ goToCreate, goToMap }) => {
     const [MomentoNFTs, setMomentoNFTs] = useState([])
 
     let coordinates = MomentoNFTs.map((URI, index) => { 
@@ -23,10 +24,15 @@ const PostListView = () => {
         getMementoNFTs()
     })
 
-    return (<>
-        {/* <CardPost MomentoNFT={MomentoNFTs.length > 0 ? MomentoNFTs[0] : []}/> */}
-        {MomentoNFTs.map((MomentoNFT, index) => <CardPost key={MomentoNFT.image + index} MomentoNFT={MomentoNFT}/>)}
-    </>)
+    return (
+        <div className="main-content">
+            <h3 className="text-primary main-title">Momento</h3>
+            <MenuOptions rightText="Create Review" goToRight={goToCreate} leftText="Map View" goToLeft={goToMap}/>
+            <div className="card-container">
+                {MomentoNFTs.map((MomentoNFT, index) => <CardPost key={MomentoNFT.image + index} MomentoNFT={MomentoNFT}/>)}
+            </div>
+        </div>
+    )
 }
 
 export default PostListView
