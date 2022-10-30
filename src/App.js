@@ -31,7 +31,7 @@ const config = {
 
 function App() {
   const [appState, setAppState] = useState({
-    view: "create",
+    view: "map",
   });
 
   const isWalletConnected = !!appState?.wallet_id;

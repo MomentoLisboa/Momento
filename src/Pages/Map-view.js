@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Map from '../componants/Map';
+import getAllMomentoNFTs from '../hooks/useMomentoNFTs';
 
 const MapView = () => {
-    const coordinates = [
-        { latitude: 38.71106863522107, longitude: -9.149738800591143, desc: "The Mill", key: "1" },
-        { latitude: 38.71421633073849, longitude: -9.151948951909155, desc: "Restaurant", key: "2" },
-        { latitude: 38.71352987544826, longitude: -9.149931905163147, desc: "Other", key: "3" }
-    ];
+
+    const [MomentoNFTs, setMomentoNFTs] = useState([])
+
+    let coordinates = MomentoNFTs.map((URI, index) => { 
+        return {
+            latitude: URI?.properties.coords.latitude,
+            longitude: URI?.properties.coords.longitude,
+            desc: "The Mill", key: index
+        }
+    })
+
+    useEffect(()=>{
+        let getMementoNFTs = async() => {
+            const MomentoNFTs_ = await getAllMomentoNFTs()
+            setMomentoNFTs(MomentoNFTs_)
+        }
+        getMementoNFTs()
+    })
 
     return (<>
         <h1 className="text-white">MAP VIEW</h1>
