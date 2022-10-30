@@ -35,7 +35,7 @@ const MapView = ({ goToCreate, goToList }) => {
         <div className="main-content">
             <h3 className="text-primary main-title">Momento</h3>
             <MenuOptions rightText="Create Review" goToRight={goToCreate} leftText="List View" goToLeft={goToList}/>
-            <Map coordinates={coordinates} />
+            <Map MomentoNFTs={MomentoNFTs} />
         </div>
     )
 }
